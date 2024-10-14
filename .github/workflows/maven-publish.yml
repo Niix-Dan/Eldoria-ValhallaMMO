@@ -10,9 +10,9 @@ on:
   # was updated too.
   push:
     paths:
-    - 'src/**'
+    - 'core/**'
     - 'pom.xml'
-    - '.github/workflows/maven.yml'
+    - '.github/workflows/maven-publish.yml'
 
   # Whenever someone submits a new pull request which modified the pom or a source file,
   # we want to ensure it compiles successfully and that all tests will pass.
