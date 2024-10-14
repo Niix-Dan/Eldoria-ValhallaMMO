@@ -808,7 +808,7 @@ public class LootListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDrops(EntityDeathEvent e){
-        if (e.getEntity() instanceof Player) return;
+        if (e.getEntity() instanceof Player) return; // Movido para ser o primeiro a checar, talvez resolva o bug dos players...
         
         if (ValhallaMMO.isWorldBlacklisted(e.getEntity().getWorld().getName()) || EntityClassification.matchesClassification(e.getEntityType(), EntityClassification.UNALIVE)) return;
         LivingEntity entity = e.getEntity();
