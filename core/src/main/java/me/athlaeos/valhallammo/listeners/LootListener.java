@@ -808,8 +808,8 @@ public class LootListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDrops(EntityDeathEvent e){
-        if (e.getEntity() instanceof Player) return; // Movido para ser o primeiro a checar, talvez resolva o bug dos players...
-        
+        if (e.getEntity() instanceof Player || e.getEntity().getType() == EntityType.PLAYER) return; // Movido para ser o primeiro a checar, talvez resolva o bug dos players...
+
         if (ValhallaMMO.isWorldBlacklisted(e.getEntity().getWorld().getName()) || EntityClassification.matchesClassification(e.getEntityType(), EntityClassification.UNALIVE)) return;
         LivingEntity entity = e.getEntity();
         Entity killer = entity.getKiller();
@@ -866,7 +866,6 @@ public class LootListener implements Listener {
                 if (!skip) e.getDrops().addAll(loottableEvent.getDrops());
             }
         }
-
         ReplacementTable replacementTable = LootTableRegistry.getReplacementTable(e.getEntityType());
         ReplacementTable globalTable = LootTableRegistry.getGlobalReplacementTable();
         ValhallaLootReplacementEvent event = new ValhallaLootReplacementEvent(replacementTable, context);
